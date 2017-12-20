@@ -1,0 +1,35 @@
+182974500 <INFO>    | -------------------------------------------------------------
+182974515 <INFO>    |                    SiSiMEX: Yellow Pages                     
+182974515 <INFO>    | -------------------------------------------------------------
+182974531 <INFO>    | 
+182974531 <INFO>    |  - Server Listen socket created
+182974546 <INFO>    |  - Socket Bind to interface 127.0.0.1:8000
+182974546 <INFO>    |  - Socket entered in Listen state...
+182981156 <INFO>    | OnPacketReceived: 
+182981171 <INFO>    | PacketType::RegisterMCC
+182981171 <INFO>    |  - MCC Agent ID: 1
+182981187 <INFO>    |  - Contributed Item ID: 1
+182981203 <INFO>    |  - Remote host address: 127.0.0.1:58108
+182981203 <INFO>    | OnPacketReceived: 
+182981203 <INFO>    | PacketType::RegisterMCC
+182981218 <INFO>    |  - MCC Agent ID: 2
+182981218 <INFO>    |  - Contributed Item ID: 2
+182981218 <INFO>    |  - Remote host address: 127.0.0.1:58109
+182981234 <INFO>    | OnPacketReceived: 
+182981234 <INFO>    | PacketType::RegisterMCC
+182981250 <INFO>    |  - MCC Agent ID: 3
+182981250 <INFO>    |  - Contributed Item ID: 3
+182981250 <INFO>    |  - Remote host address: 127.0.0.1:58110
+182981265 <INFO>    | OnPacketReceived: 
+182981265 <INFO>    | PacketType::RegisterMCC
+182981281 <INFO>    |  - MCC Agent ID: 4
+182981281 <INFO>    |  - Contributed Item ID: 0
+182981281 <INFO>    |  - Remote host address: 127.0.0.1:58111
+182991343 <INFO>    | OnPacketReceived: 
+182991359 <INFO>    | PacketType::QueryMCCsForItem
+182991484 <INFO>    | OnPacketReceived: 
+182991484 <INFO>    | PacketType::QueryMCCsForItem
+182991546 <INFO>    | OnPacketReceived: 
+182991562 <INFO>    | PacketType::QueryMCCsForItem
+182991625 <INFO>    | OnPacketReceived: 
+182991625 <INFO>    | PacketType::QueryMCCsForItem

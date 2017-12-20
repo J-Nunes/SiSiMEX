@@ -8,12 +8,15 @@ enum State
 	ST_INIT,
 	ST_REQUESTING_MCCs,
 	// TODO: Add other states
+	ST_REQUESTING_NEGOTIATION,
+	ST_NEGOTIATING
 };
 
-MCP::MCP(Node *node, uint16_t itemId) :
+MCP::MCP(Node *node, uint16_t itemId, const AgentLocation* parent_ucp) :
 	Agent(node),
 	_itemId(itemId),
-	_negotiationAgreement(false)
+	_negotiationAgreement(false),
+	_parent_ucp(parent_ucp)
 {
 	setState(ST_INIT);
 }
@@ -32,6 +35,12 @@ void MCP::update()
 		break;
 
 	// TODO: Handle other states
+	case ST_REQUESTING_NEGOTIATION:
+		sendNegotiationRequest(_mccRegisters[_mccRegisterIndex]);
+		break;
+
+	case ST_NEGOTIATING:
+		break;
 
 	default:;
 	}
@@ -66,13 +75,27 @@ void MCP::OnPacketReceived(TCPSocketPtr socket, const PacketHeader &packetHeader
 		_mccRegisters.swap(packetData.mccAddresses);
 
 		// Select MCC to negociate
-		//_mccRegisterIndex = 0;
-		///setState(ST_SOME_NEXT_STATE...);
+		_mccRegisterIndex = 0;
+		setState(ST_REQUESTING_NEGOTIATION);
 
 		socket->Disconnect();
 	}
 
 	// TODO: Handle other responses
+	else if (state() == ST_REQUESTING_NEGOTIATION && packetType == PacketType::AnswerMCPNegotiation)
+	{
+		iLog << "MCC with id: " << packetHeader.srcAgentId << " agreeds to start a negotiation";
+		setState(ST_NEGOTIATING);
+
+		PacketAnswerMCPNegotiation packetData;
+		packetData.Read(stream);
+		AgentLocation ucc;
+		ucc.hostIP = socket->RemoteAddress().GetIPString();
+		ucc.hostPort = LISTEN_PORT_AGENTS;
+		ucc.agentId = packetData.UCC_ID;
+
+		createChildUCP(ucc);
+	}
 }
 
 bool MCP::negotiationFinished() const
@@ -110,14 +133,34 @@ bool MCP::queryMCCsForItem(int itemId)
 bool MCP::sendNegotiationRequest(const AgentLocation &mccRegister)
 {
 	// TODO
+	// Create message header and data
+	PacketHeader packetHead;
+	packetHead.packetType = PacketType::RequestMCCForNegotiation;
+	packetHead.srcAgentId = id();
+	packetHead.dstAgentId = mccRegister.agentId;
+	//PacketRequestMCCForNegotiation packetData;
 
-	//return sendPacketToHost(hostIP, hostPort, stream);
-	return false;
+	// Serialize message
+	OutputMemoryStream stream;
+	packetHead.Write(stream);
+	//packetData.Write(stream);
+
+	return sendPacketToHost(mccRegister.hostIP, mccRegister.hostPort, stream);
 }
 
 void MCP::createChildUCP(const AgentLocation &uccLoc)
 {
 	// TODO
+	AgentLocation myself;
+	myself.hostIP = uccLoc.hostIP;
+	myself.hostPort = uccLoc.hostPort;
+	myself.agentId = id();
+
+	UCP* ucp = new UCP(node(), _itemId, uccLoc, myself);
+	UCPPtr tmp(ucp);
+	_child_ucp = tmp;
+	AgentPtr agentPtr(ucp);
+	g_AgentContainer->addAgent(agentPtr);
 }
 
 void MCP::destroyChildUCP()

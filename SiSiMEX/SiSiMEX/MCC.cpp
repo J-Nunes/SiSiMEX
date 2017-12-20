@@ -9,6 +9,7 @@ enum State
 	ST_IDLE,
 
 	// TODO: Add other states ...
+	ST_NEGOTIATING,
 	
 	ST_UNREGISTERING,
 	ST_FINISHED
@@ -40,6 +41,8 @@ void MCC::update()
 		break;
 
 	// TODO: Handle other states
+	case ST_NEGOTIATING:
+		break;
 	
 	case ST_FINISHED:
 		finish();
@@ -63,7 +66,28 @@ void MCC::OnPacketReceived(TCPSocketPtr socket, const PacketHeader &packetHeader
 		setState(ST_FINISHED);
 		socket->Disconnect();
 	}
+
 	//else TODO handle other requests
+	else if (state() == ST_IDLE && packetType == PacketType::RequestMCCForNegotiation)
+	{
+		iLog << "MCP with id: " << packetHeader.srcAgentId << " wants to start a negotiation";
+
+		setState(ST_NEGOTIATING);
+		createChildUCC();
+
+		PacketHeader packetHead;
+		packetHead.packetType = PacketType::AnswerMCPNegotiation;
+		packetHead.srcAgentId = id();
+		packetHead.dstAgentId = packetHeader.srcAgentId;
+		PacketAnswerMCPNegotiation packetData;
+		packetData.UCC_ID = _ucc->id();
+
+		OutputMemoryStream stream;
+		packetHead.Write(stream);
+		packetData.Write(stream);
+
+		sendPacketToHost(socket->RemoteAddress().GetIPString(), LISTEN_PORT_AGENTS, stream);
+	}
 }
 
 bool MCC::negotiationFinished() const
@@ -117,6 +141,11 @@ void MCC::unregisterFromYellowPages()
 void MCC::createChildUCC()
 {
 	// TODO
+	UCC* ucc = new UCC(node(), _contributedItemId, _constraintItemId);
+	UCCPtr tmp(ucc);
+	_ucc = tmp;
+	AgentPtr agentPtr(ucc);
+	g_AgentContainer->addAgent(agentPtr);
 }
 
 void MCC::destroyChildUCC()
