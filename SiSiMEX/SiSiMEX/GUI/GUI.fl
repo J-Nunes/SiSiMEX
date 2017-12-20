@@ -1,0 +1,129 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+header_name {.h}
+code_name {.cxx}
+decl {\#include "GUICallbacks.h"} {private global
+}
+
+Function {make_window_select_mode()} {
+  comment {Selects the mode of the application
+- YellowPages
+- Agents} open
+} {
+  Fl_Window guiWindowApplicationMode {
+    label SiSiMEX open
+    xywh {1148 239 216 100} type Double resizable size_range {216 100 0 0} visible
+  } {
+    Fl_Group {} {
+      label {Application Mode} open
+      xywh {5 20 205 110} align 65
+    } {
+      Fl_Round_Button radioButtonYellowPages {
+        label YellowPages
+        callback {onguiRadioButtonApplicationModeChanged(o);}
+        xywh {5 45 205 25} down_box ROUND_DOWN_BOX align 84
+      }
+      Fl_Round_Button radioButtonAgents {
+        label Agents
+        callback {onguiRadioButtonApplicationModeChanged(o)}
+        xywh {5 20 205 25} down_box ROUND_DOWN_BOX value 1 align 84
+      }
+      Fl_Button {} {
+        label {Start Application}
+        callback {onguiButtonStartApplication();}
+        xywh {5 70 205 25} down_box UP_FRAME selection_color 0
+      }
+    }
+    Fl_Group {} {open
+      xywh {10 105 205 30}
+    } {}
+  }
+}
+
+Function {make_window_multiagents_application()} {
+  comment {Main menu of the multi-agents application.
+It provides buttons to execute several actions.} open
+} {
+  Fl_Window guiWindowMultiagentApplication {
+    label {SiSiMEX Multi Agent Application} open
+    xywh {1099 248 594 580} type Double resizable visible
+  } {
+    Fl_Button {} {
+      label {List local nodes}
+      callback {onGuiButtonListLocalNodes();}
+      xywh {5 5 585 25} align 64
+    }
+    Fl_Button {} {
+      label {Inspect local node}
+      callback {onGuiButtonInspectLocalNode();}
+      xywh {5 30 495 25} align 64
+    }
+    Fl_Button {} {
+      label {Spawn MCP}
+      callback {onguiButtonSpawnMCP();}
+      xywh {5 55 370 25} align 64
+    }
+    Fl_Button {} {
+      label {Quit Multi Agent Application}
+      callback {onGuiButtonQuitMultiagentApplication();}
+      xywh {5 550 585 25} align 64
+    }
+    Fl_Text_Display guiTextDisplayAgentsLog {
+      label {Application log}
+      xywh {5 125 585 420} align 5 resizable
+    }
+    Fl_Spinner guiSpinnerNodeID {
+      label {Node ID}
+      xywh {555 30 35 25} minimum 0 value 0
+    }
+    Fl_Spinner guiSpinnerMCPItemID {
+      label Requested
+      tooltip {Requested Item ID} xywh {555 55 35 25} minimum 0 value 0
+    }
+    Fl_Spinner guiSpinnerMCPNodeID {
+      label {Node ID}
+      tooltip {Node on which the agent will be spawn} xywh {435 55 35 25} minimum 0 value 0
+    }
+    Fl_Button {} {
+      label {Spawn MCC}
+      callback {onguiButtonSpawnMCC();} selected
+      xywh {5 80 245 25} align 64
+    }
+    Fl_Spinner guiSpinnerMCCNodeID {
+      label {Node ID}
+      tooltip {Node on which the agent will be spawn} xywh {310 80 35 25} minimum 0 value 0
+    }
+    Fl_Spinner guiSpinnerMCCContributedItemID {
+      label Contributed
+      tooltip {Contributed Item ID} xywh {435 80 35 25} minimum 0 value 0
+    }
+    Fl_Spinner guiSpinnerMCCConstraintItemID {
+      label Constraint
+      tooltip {Constraint Item ID} xywh {555 80 35 25} minimum -1 value -1
+    }
+  }
+}
+
+Function {make_window_yellowpages_application()} {
+  comment {Main menu of the yellowpages application.} open
+} {
+  Fl_Window guiWindowYellowPagesApplication {
+    label {SiSiMEX Yellow Pages Application} open
+    xywh {456 252 594 580} type Double resizable visible
+  } {
+    Fl_Button {} {
+      label {Quit Yellow Pages}
+      callback {onGuiButtonQuitYellowPages();}
+      xywh {5 550 585 25} align 64
+    }
+    Fl_Text_Display guiTextDisplayYPLog {
+      label {Application log}
+      xywh {5 50 585 495} align 5 resizable
+    }
+    Fl_Button {} {
+      label {Clear Yellow Pages}
+      callback {onguiButtonClearYellowPages()}
+      xywh {5 5 585 25}
+    }
+  }
+}

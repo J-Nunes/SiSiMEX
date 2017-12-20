@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Archivos de origen">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Archivos de encabezado">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Archivos de recursos">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Archivos de encabezado\GUI">
+      <UniqueIdentifier>{d6993436-611d-4461-92c9-0f66d02f46a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\GUI">
+      <UniqueIdentifier>{c492d639-05de-49b4-af2e-c748676788a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Agents">
+      <UniqueIdentifier>{218ac742-22ed-4e9c-a5c1-44d8d58f1bb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Agents">
+      <UniqueIdentifier>{d8e175e1-0e9c-490d-96ce-544a1219abc7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="YellowPages.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Globals.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\GUI.cxx">
+      <Filter>Archivos de origen\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\GUICallbacks.cpp">
+      <Filter>Archivos de origen\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>Archivos de origen\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiAgentApplication.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Agent.cpp">
+      <Filter>Archivos de origen\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="AgentContainer.cpp">
+      <Filter>Archivos de origen\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="MCC.cpp">
+      <Filter>Archivos de origen\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="MCP.cpp">
+      <Filter>Archivos de origen\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="UCC.cpp">
+      <Filter>Archivos de origen\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="UCP.cpp">
+      <Filter>Archivos de origen\Agents</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Net\Net.vcxproj" />
+    <None Include="Net\Net.vcxproj.filters" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="YellowPages.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Packets.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\GUI.h">
+      <Filter>Archivos de encabezado\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\GUICallbacks.h">
+      <Filter>Archivos de encabezado\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>Archivos de encabezado\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiAgentApplication.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Agent.h">
+      <Filter>Archivos de encabezado\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="AgentContainer.h">
+      <Filter>Archivos de encabezado\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC.h">
+      <Filter>Archivos de encabezado\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="MCP.h">
+      <Filter>Archivos de encabezado\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="UCC.h">
+      <Filter>Archivos de encabezado\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="UCP.h">
+      <Filter>Archivos de encabezado\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="AgentLocation.h">
+      <Filter>Archivos de encabezado\Agents</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
