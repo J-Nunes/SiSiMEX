@@ -42,16 +42,15 @@ void UCC::OnPacketReceived(TCPSocketPtr socket, const PacketHeader &packetHeader
 	if (state() == ST_IDLE && packetType == PacketType::RequestUCCForItem)
 	{
 		PacketRequestUCCForItem data;
-		data.Read(stream);
-		iLog << "UCP requested itemID: " << data.itemId << "I am an UCC and I am offering: " << _contributedItemId;
-		
-		if (data.itemId == _contributedItemId)
-		{
-			
-			setState(ST_CONSTRAINT_REQUESTED);
+		data.Read(stream);	
 
+		if (data.itemId == _contributedItemId)
+		{			
 			if (_constraintItemId != NULL_ITEM_ID)
 			{
+				iLog << "UCC want constraint: " << _constraintItemId;
+				setState(ST_CONSTRAINT_REQUESTED);
+
 				PacketHeader head;
 				head.srcAgentId = id();
 				head.dstAgentId = packetHeader.srcAgentId;
@@ -64,9 +63,20 @@ void UCC::OnPacketReceived(TCPSocketPtr socket, const PacketHeader &packetHeader
 				data.Write(stream);
 				sendPacketToHost(socket->RemoteAddress().GetIPString(), LISTEN_PORT_AGENTS, stream);
 			}
+			else
+			{
+				iLog << "UCC doesn't have constraint, sending Item to UCP";
+				sendItem(socket->RemoteAddress().GetIPString(), packetHeader.srcAgentId);
+			}
 		}
 		else
 			iLog << "You shouldn't be here";
+	}
+
+	else if (state() == ST_CONSTRAINT_REQUESTED && packetType == PacketType::SendConstraintRequestedUCC)
+	{
+		iLog << "UCC constraint solved: " << _constraintItemId << " Sending Item";
+		sendItem(socket->RemoteAddress().GetIPString(), packetHeader.srcAgentId);
 	}
 }
 
@@ -78,4 +88,20 @@ bool UCC::negotiationFinished() const {
 bool UCC::negotiationAgreement() const {
 	// TODO
 	return false;
+}
+
+void UCC::sendItem(const std::string IPHost, const uint16_t dst)
+{
+	// TODO
+	PacketHeader head;
+	head.srcAgentId = id();
+	head.dstAgentId = dst;
+	head.packetType = PacketType::SendItemRequestedUCP;
+	PacketSendItemRequestedUCP data;
+	data.itemId = _contributedItemId;
+
+	OutputMemoryStream stream;
+	head.Write(stream);
+	data.Write(stream);
+	sendPacketToHost(IPHost, LISTEN_PORT_AGENTS, stream);
 }

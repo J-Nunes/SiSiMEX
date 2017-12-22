@@ -7,14 +7,15 @@ enum State
 {
 	ST_INIT,
 	// TODO: Add other states...
-	ST_ITEM_REQUESTED
+	ST_ITEM_REQUESTED,
+	ST_WAITING_CONSTRAINT,
+	ST_FINISHED
 };
 
-UCP::UCP(Node *node, uint16_t requestedItemId, const AgentLocation &uccLocation, const AgentLocation &parent_mcp) :
+UCP::UCP(Node *node, uint16_t requestedItemId, const AgentLocation &uccLocation) :
 	Agent(node),
 	_requestedItemId(requestedItemId),
 	_uccLocation(uccLocation),
-	_parent_mcp(parent_mcp),
 	_negotiationAgreement(false)
 {
 	setState(ST_INIT);
@@ -37,6 +38,20 @@ void UCP::update()
 	case ST_ITEM_REQUESTED:
 		break;
 
+	case ST_WAITING_CONSTRAINT:
+		if (_child_mcp->negotiationFinished())
+		{
+			if (_child_mcp->negotiationAgreement())
+			{
+				_negotiationAgreement = true;
+				sendConstraint(_child_mcp->requestedItemId());
+				setState(ST_ITEM_REQUESTED);
+			}
+			else
+				_negotiationAgreement = false;
+		}
+		break;
+
 	default:;
 	}
 }
@@ -54,21 +69,31 @@ void UCP::OnPacketReceived(TCPSocketPtr socket, const PacketHeader &packetHeader
 	// TODO: Handle requests
 	if (state() == ST_ITEM_REQUESTED && packetType == PacketType::RequestUCPForConstraint)
 	{
+		setState(ST_WAITING_CONSTRAINT);
 		PacketRequestUCPForConstraint packetData;
-		packetData.Read(stream);
-		createChildMCP(packetData.itemId);
+		packetData.Read(stream);		
+		createChildMCP(packetData.itemId);	
+
 		iLog << "UCP looking for constraint: " << packetData.itemId;
+	}
+
+	if (state() == ST_ITEM_REQUESTED && packetType == PacketType::SendItemRequestedUCP)
+	{
+		iLog << "UCP requestin item: " << _requestedItemId << " negotiation finished successfully";
+
+		_negotiationAgreement = true;
+		setState(ST_FINISHED);
 	}
 }
 
 bool UCP::negotiationFinished() const {
 	// TODO
-	return false;
+	return (state() == ST_FINISHED);
 }
 
 bool UCP::negotiationAgreement() const {
 	// TODO
-	return false;
+	return _negotiationAgreement;
 }
 
 
@@ -93,12 +118,9 @@ void UCP::requestItem()
 void UCP::createChildMCP(uint16_t constraintItemId)
 {
 	// TODO
-	AgentLocation myself;
-	myself.hostIP = _uccLocation.hostIP;
-	myself.hostPort = _uccLocation.hostPort;
-	myself.agentId = id();
-
-	MCP *mcp = new MCP(node(), constraintItemId, &myself);
+	MCP *mcp = new MCP(node(), constraintItemId);
+	MCPPtr tmp(mcp);
+	_child_mcp = tmp;
 	AgentPtr agentPtr(mcp);
 	g_AgentContainer->addAgent(agentPtr);
 }
@@ -106,8 +128,20 @@ void UCP::createChildMCP(uint16_t constraintItemId)
 void UCP::sendConstraint(uint16_t constraintItemId)
 {
 	// TODO
+	iLog << "UCP requestin item: " << _requestedItemId << " sending constraint: " << constraintItemId << " to UCC";
 
-	//sendPacketToHost(ip, port, ostream);
+	PacketHeader head;
+	head.srcAgentId = id();
+	head.dstAgentId = _uccLocation.agentId;
+	head.packetType = PacketType::SendConstraintRequestedUCC;
+	PacketSendConstraintRequestedUCC data;
+	data.itemId = constraintItemId;
+
+	OutputMemoryStream stream;
+	head.Write(stream);
+	data.Write(stream);
+
+	sendPacketToHost(_uccLocation.hostIP, _uccLocation.hostPort, stream);
 }
 
 void UCP::destroyChildMCP()

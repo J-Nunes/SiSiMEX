@@ -11,7 +11,7 @@ class UCP :
 public:
 
 	// Constructor and destructor
-	UCP(Node *node, uint16_t requestedItemId, const AgentLocation &uccLoc, const AgentLocation &parent_mcp);
+	UCP(Node *node, uint16_t requestedItemId, const AgentLocation &uccLoc);
 	~UCP();
 
 	void update() override;
@@ -36,7 +36,6 @@ private:
 
 	AgentLocation _uccLocation; /**< Location of the remote UCC agent. */
 
-	AgentLocation _parent_mcp; /**< The parent MCP. */
 	MCPPtr _child_mcp; /**< The child MCP. */
 
 	bool _negotiationAgreement; /**< Was there a negotiation agreement? */

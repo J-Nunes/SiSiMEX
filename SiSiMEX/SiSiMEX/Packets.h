@@ -25,6 +25,9 @@ enum class PacketType
 	// TODO: Add message types
 	RequestUCCForItem,
 	RequestUCPForConstraint,
+	SendItemRequestedUCP,
+	SendConstraintRequestedUCC,
+
 	Last
 };
 
@@ -136,4 +139,8 @@ public:
 using PacketRequestUCCForItem = PacketRegisterMCC;
 
 using PacketRequestUCPForConstraint = PacketRegisterMCC;
+
+using PacketSendItemRequestedUCP = PacketRegisterMCC;
+
+using PacketSendConstraintRequestedUCC = PacketRegisterMCC;
 

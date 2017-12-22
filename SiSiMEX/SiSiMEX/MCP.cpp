@@ -9,14 +9,14 @@ enum State
 	ST_REQUESTING_MCCs,
 	// TODO: Add other states
 	ST_REQUESTING_NEGOTIATION,
-	ST_NEGOTIATING
+	ST_NEGOTIATING,
+	ST_FINISHED
 };
 
-MCP::MCP(Node *node, uint16_t itemId, const AgentLocation* parent_ucp) :
+MCP::MCP(Node *node, uint16_t itemId) :
 	Agent(node),
 	_itemId(itemId),
-	_negotiationAgreement(false),
-	_parent_ucp(parent_ucp)
+	_negotiationAgreement(false)
 {
 	setState(ST_INIT);
 }
@@ -40,6 +40,14 @@ void MCP::update()
 		break;
 
 	case ST_NEGOTIATING:
+		if (_child_ucp->negotiationFinished())
+		{
+			setState(ST_FINISHED);
+			if (_child_ucp->negotiationAgreement())
+				_negotiationAgreement = true;
+			else
+				_negotiationAgreement = false;
+		}
 		break;
 
 	default:;
@@ -101,13 +109,13 @@ void MCP::OnPacketReceived(TCPSocketPtr socket, const PacketHeader &packetHeader
 bool MCP::negotiationFinished() const
 {
 	// TODO
-	return false;
+	return (state() == ST_FINISHED);
 }
 
 bool MCP::negotiationAgreement() const
 {
 	// TODO
-	return false;
+	return _negotiationAgreement;
 }
 
 
@@ -150,13 +158,7 @@ bool MCP::sendNegotiationRequest(const AgentLocation &mccRegister)
 
 void MCP::createChildUCP(const AgentLocation &uccLoc)
 {
-	// TODO
-	AgentLocation myself;
-	myself.hostIP = uccLoc.hostIP;
-	myself.hostPort = uccLoc.hostPort;
-	myself.agentId = id();
-
-	UCP* ucp = new UCP(node(), _itemId, uccLoc, myself);
+	UCP* ucp = new UCP(node(), _itemId, uccLoc);
 	UCPPtr tmp(ucp);
 	_child_ucp = tmp;
 	AgentPtr agentPtr(ucp);

@@ -11,7 +11,7 @@ class MCP :
 public:
 
 	// Constructor and destructor
-	MCP(Node *node, uint16_t itemId, const AgentLocation* parent_ucp = nullptr);
+	MCP(Node *node, uint16_t itemId);
 	~MCP();
 
 	// Getters
@@ -44,7 +44,6 @@ private:
 	std::vector<AgentLocation> _mccRegisters; /**< MCCs returned by the YP. */
 
 	UCPPtr _child_ucp; /**< Child UCP. */
-	const AgentLocation* _parent_ucp; /**< Parent UCP. */
 
 	bool _negotiationAgreement; /**< Was there a negotiation agreement? */
 };

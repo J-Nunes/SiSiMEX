@@ -21,6 +21,8 @@ public:
 	// Whether ir not there was a negotiation agreement
 	bool negotiationAgreement() const;
 
+	void sendItem(const std::string IPHost, const uint16_t dst);
+
 private:
 
 	uint16_t _contributedItemId; /**< The contributed item. */
