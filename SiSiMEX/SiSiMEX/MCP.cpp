@@ -159,11 +159,8 @@ bool MCP::sendNegotiationRequest(const AgentLocation &mccRegister)
 
 void MCP::createChildUCP(const AgentLocation &uccLoc)
 {
-	UCP* ucp = new UCP(node(), _itemId, uccLoc);
-	UCPPtr tmp(ucp);
-	_child_ucp = tmp;
-	AgentPtr agentPtr(ucp);
-	g_AgentContainer->addAgent(agentPtr);
+	_child_ucp = std::make_shared<UCP>(node(), _itemId, uccLoc);
+	g_AgentContainer->addAgent(_child_ucp);
 }
 
 void MCP::destroyChildUCP()

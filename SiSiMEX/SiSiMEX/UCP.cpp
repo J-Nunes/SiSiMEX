@@ -120,11 +120,8 @@ void UCP::requestItem()
 void UCP::createChildMCP(uint16_t constraintItemId)
 {
 	// TODO
-	MCP *mcp = new MCP(node(), constraintItemId);
-	MCPPtr tmp(mcp);
-	_child_mcp = tmp;
-	AgentPtr agentPtr(mcp);
-	g_AgentContainer->addAgent(agentPtr);
+	_child_mcp = std::make_shared<MCP>(node(), constraintItemId);
+	g_AgentContainer->addAgent(_child_mcp);
 }
 
 void UCP::sendConstraint(uint16_t constraintItemId)
