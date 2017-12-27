@@ -1,49 +1,48 @@
-697287796 <INFO>    | -------------------------------------------------------------
-697287812 <INFO>    |                     SiSiMEX Multi-Agents                     
-697287812 <INFO>    | -------------------------------------------------------------
-697287812 <INFO>    | 
-697287828 <INFO>    |  - Server Listen socket created
-697287828 <INFO>    |  - Socket Bind to interface 127.0.0.1:8000
-697287828 <INFO>    |  - Socket entered in Listen state...
-697287828 <INFO>    | Spawn MCC for node 1 contributing item 1 - constraint item 2
-697287843 <INFO>    | Spawn MCC for node 2 contributing item 2 - constraint item 3
-697287843 <INFO>    | Spawn MCC for node 3 contributing item 3 - constraint item 0
-697287843 <INFO>    | Spawn MCC for node 0 contributing item 0 - constraint item 9999
-697292437 <INFO>    | Spawn MCP for node 0 petitioning item 1
-697292562 <INFO>    | OnPacketReceived PacketType::ReturnMCCsForItem 1
-697292562 <INFO>    |  - MCC: 1 - host: 127.0.0.1:8001
-697292562 <INFO>    | MCP with id: 5 wants to start a negotiation
-697292578 <INFO>    | UCC created with ID: 6 Offering item: 1
-697292578 <INFO>    | MCC with id: 1 agreeds to start a negotiation
-697292578 <INFO>    | UCP requesting itemID: 1
-697292593 <INFO>    | UCC want constraint: 2
-697292593 <INFO>    | UCP looking for constraint: 2
-697292609 <INFO>    | OnPacketReceived PacketType::ReturnMCCsForItem 2
-697292625 <INFO>    |  - MCC: 2 - host: 127.0.0.1:8001
-697292625 <INFO>    | MCP with id: 8 wants to start a negotiation
-697292640 <INFO>    | UCC created with ID: 9 Offering item: 2
-697292640 <INFO>    | MCC with id: 2 agreeds to start a negotiation
-697292640 <INFO>    | UCP requesting itemID: 2
-697292656 <INFO>    | UCC want constraint: 3
-697292656 <INFO>    | UCP looking for constraint: 3
-697292671 <INFO>    | OnPacketReceived PacketType::ReturnMCCsForItem 3
-697292687 <INFO>    |  - MCC: 3 - host: 127.0.0.1:8001
-697292687 <INFO>    | MCP with id: 11 wants to start a negotiation
-697292687 <INFO>    | UCC created with ID: 12 Offering item: 3
-697292703 <INFO>    | MCC with id: 3 agreeds to start a negotiation
-697292703 <INFO>    | UCP requesting itemID: 3
-697292718 <INFO>    | UCC want constraint: 0
-697292718 <INFO>    | UCP looking for constraint: 0
-697292734 <INFO>    | OnPacketReceived PacketType::ReturnMCCsForItem 0
-697292734 <INFO>    |  - MCC: 4 - host: 127.0.0.1:8001
-697292750 <INFO>    | MCP with id: 14 wants to start a negotiation
-697292750 <INFO>    | UCC created with ID: 15 Offering item: 0
-697292765 <INFO>    | MCC with id: 4 agreeds to start a negotiation
-697292765 <INFO>    | UCP requesting itemID: 0
-697292765 <INFO>    | UCC doesn't have constraint, sending Item to UCP
-697292781 <INFO>    | UCP requestin item: 0 negotiation finished successfully
-697292890 <INFO>    | UCP requestin item: 3 sending constraint: 0 to UCC
-697292890 <INFO>    | UCC constraint solved: 0 Sending Item
-697292890 <INFO>    | UCP requestin item: 3 negotiation finished successfully
-697293000 <INFO>    | UCP requestin item: 2 sending constraint: 3 to UCC
-697293015 <INFO>    | UCC constraint solved: 3 Sending Item
+10876327 <INFO>    | -------------------------------------------------------------
+10876327 <INFO>    |                     SiSiMEX Multi-Agents                     
+10876327 <INFO>    | -------------------------------------------------------------
+10876327 <INFO>    | 
+10876327 <INFO>    |  - Server Listen socket created
+10876327 <INFO>    |  - Socket Bind to interface 127.0.0.1:8000
+10876327 <INFO>    |  - Socket entered in Listen state...
+10876342 <INFO>    | Spawn MCC for node 1 contributing item 1 - constraint item 2
+10876342 <INFO>    | Spawn MCC for node 2 contributing item 2 - constraint item 3
+10876342 <INFO>    | Spawn MCC for node 3 contributing item 3 - constraint item 0
+10876342 <INFO>    | Spawn MCC for node 0 contributing item 0 - constraint item 9999
+10880274 <INFO>    | Spawn MCP for node 1 petitioning item 2
+10880383 <INFO>    | OnPacketReceived PacketType::ReturnMCCsForItem 2
+10880383 <INFO>    |  - MCC: 2 - host: 127.0.0.1:8001
+10880383 <INFO>    | MCP with id: 5 wants to start a negotiation
+10880383 <INFO>    | UCC created with ID: 6 Offering item: 2
+10880398 <INFO>    | MCC with id: 2 agreeds to start a negotiation
+10880398 <INFO>    | UCP requesting itemID: 2
+10880398 <INFO>    | UCC want constraint: 3
+10880398 <INFO>    | UCP looking for constraint: 3
+10880398 <INFO>    | OnPacketReceived PacketType::ReturnMCCsForItem 3
+10880398 <INFO>    |  - MCC: 3 - host: 127.0.0.1:8001
+10880414 <INFO>    | MCP with id: 8 wants to start a negotiation
+10880414 <INFO>    | UCC created with ID: 9 Offering item: 3
+10880414 <INFO>    | MCC with id: 3 agreeds to start a negotiation
+10880414 <INFO>    | UCP requesting itemID: 3
+10880414 <INFO>    | UCC want constraint: 0
+10880414 <INFO>    | UCP looking for constraint: 0
+10880414 <INFO>    | OnPacketReceived PacketType::ReturnMCCsForItem 0
+10880414 <INFO>    |  - MCC: 4 - host: 127.0.0.1:8001
+10880430 <INFO>    | MCP with id: 11 wants to start a negotiation
+10880430 <INFO>    | UCC created with ID: 12 Offering item: 0
+10880430 <INFO>    | MCC with id: 4 agreeds to start a negotiation
+10880430 <INFO>    | UCP requesting itemID: 0
+10880430 <INFO>    | UCC doesn't have constraint, sending Item to UCP
+10880430 <INFO>    | UCP requesting item: 0 negotiation finished successfully
+10880539 <INFO>    | UCP requestin item: 3 sending constraint: 0 to UCC
+10880539 <INFO>    | UCC constraint solved: 0 Sending Item
+10880539 <INFO>    | UCP requesting item: 3 negotiation finished successfully
+10880648 <INFO>    | UCP requestin item: 2 sending constraint: 3 to UCC
+10880648 <INFO>    | UCC constraint solved: 3 Sending Item
+10880648 <INFO>    | UCP requesting item: 2 negotiation finished successfully
+10880648 <INFO>    | MCP requesting item: 2 finalizing
+10880648 <INFO>    | UCP requesting item: 2 finalizing
+10880648 <INFO>    | MCP requesting item: 3 finalizing
+10880648 <INFO>    | UCP requesting item: 3 finalizing
+10880648 <INFO>    | MCP requesting item: 0 finalizing
+10880648 <INFO>    | UCP requesting item: 0 finalizing

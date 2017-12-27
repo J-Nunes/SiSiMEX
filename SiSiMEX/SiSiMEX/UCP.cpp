@@ -43,13 +43,14 @@ void UCP::update()
 		{
 			if (_child_mcp->negotiationAgreement())
 			{
-				_negotiationAgreement = true;
 				sendConstraint(_child_mcp->requestedItemId());
 				setState(ST_ITEM_REQUESTED);
 			}
 			else
 				_negotiationAgreement = false;
 		}
+		break;
+	case ST_FINISHED:
 		break;
 
 	default:;
@@ -58,6 +59,7 @@ void UCP::update()
 
 void UCP::finalize()
 {
+	iLog << "UCP requesting item: " << _requestedItemId << " finalizing";
 	destroyChildMCP();
 	finish();
 }
@@ -79,7 +81,7 @@ void UCP::OnPacketReceived(TCPSocketPtr socket, const PacketHeader &packetHeader
 
 	if (state() == ST_ITEM_REQUESTED && packetType == PacketType::SendItemRequestedUCP)
 	{
-		iLog << "UCP requestin item: " << _requestedItemId << " negotiation finished successfully";
+		iLog << "UCP requesting item: " << _requestedItemId << " negotiation finished successfully";
 
 		_negotiationAgreement = true;
 		setState(ST_FINISHED);
@@ -146,5 +148,7 @@ void UCP::sendConstraint(uint16_t constraintItemId)
 
 void UCP::destroyChildMCP()
 {
-	// TODO
+	// TODO 
+	if (_child_mcp)
+		_child_mcp->finalize();
 }

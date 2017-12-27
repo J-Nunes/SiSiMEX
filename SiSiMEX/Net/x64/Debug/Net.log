@@ -1,14 +1,1 @@
-﻿  UDPSocket.cpp
-  TCPSocket.cpp
-c:\users\jordinps\documents\github\sisimex\sisimex\net\tcpsocket.cpp(162): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
-c:\users\jordinps\documents\github\sisimex\sisimex\net\tcpsocket.cpp(162): warning C4267: 'initializing': conversion from 'size_t' to 'const uint32_t', possible loss of data
-c:\users\jordinps\documents\github\sisimex\sisimex\net\tcpsocket.cpp(184): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\jordinps\documents\github\sisimex\sisimex\net\tcpsocket.cpp(201): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-c:\users\jordinps\documents\github\sisimex\sisimex\net\tcpsocket.cpp(211): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  TCPNetworkManager.cpp
-  StringUtils.cpp
-  SocketUtil.cpp
-  SocketAddress.cpp
-  MemoryStream.cpp
-  Generating Code...
-  Net.vcxproj -> C:\Users\jordinps\Documents\GitHub\SiSiMEX\SiSiMEX\x64\Debug\Net.lib
+﻿  Net.vcxproj -> C:\Users\Usuario\Documents\GitHub\SiSiMEX\SiSiMEX\x64\Debug\Net.lib
