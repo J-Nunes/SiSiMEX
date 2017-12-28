@@ -11,7 +11,7 @@
  * one node. This constant defines how many nodes there will
  * exist in a single machine.
  */
-static const int MAX_NODES = 3;
+static const int MAX_NODES = 6;
 
 /**
  * This constant defines which is the maximum number of

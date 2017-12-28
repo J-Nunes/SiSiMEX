@@ -6,7 +6,8 @@ enum State
 {
 	// TODO: Add some states
 	ST_IDLE,
-	ST_CONSTRAINT_REQUESTED
+	ST_CONSTRAINT_REQUESTED,
+	ST_FINISHED
 };
 
 UCC::UCC(Node *node, uint16_t contributedItemId, uint16_t constraintItemId) :
@@ -75,24 +76,27 @@ void UCC::OnPacketReceived(TCPSocketPtr socket, const PacketHeader &packetHeader
 
 	else if (state() == ST_CONSTRAINT_REQUESTED && packetType == PacketType::SendConstraintRequestedUCC)
 	{
-		iLog << "UCC constraint solved: " << _constraintItemId << " Sending Item";
+		iLog << "UCC constraint solved: " << _constraintItemId << " Sending Item to agent: " << packetHeader.srcAgentId;
 		sendItem(socket->RemoteAddress().GetIPString(), packetHeader.srcAgentId);
 	}
 }
 
 bool UCC::negotiationFinished() const {
 	// TODO
-	return false;
+	return (state() == ST_FINISHED);
 }
 
 bool UCC::negotiationAgreement() const {
 	// TODO
-	return false;
+	return _negotiationAgreement;
 }
 
 void UCC::sendItem(const std::string IPHost, const uint16_t dst)
 {
 	// TODO
+	setState(ST_FINISHED);
+	_negotiationAgreement = true;
+
 	PacketHeader head;
 	head.srcAgentId = id();
 	head.dstAgentId = dst;
@@ -104,4 +108,5 @@ void UCC::sendItem(const std::string IPHost, const uint16_t dst)
 	head.Write(stream);
 	data.Write(stream);
 	sendPacketToHost(IPHost, LISTEN_PORT_AGENTS, stream);
+	iLog << "Item sent";
 }

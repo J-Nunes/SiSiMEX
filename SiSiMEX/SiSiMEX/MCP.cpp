@@ -56,7 +56,6 @@ void MCP::update()
 
 void MCP::finalize()
 {
-	iLog << "MCP requesting item: " << _itemId << " finalizing";
 	destroyChildUCP();
 	finish();
 }
@@ -167,7 +166,5 @@ void MCP::destroyChildUCP()
 {
 	// TODO
 	if (_child_ucp)
-	{
 		_child_ucp->finalize();
-	}
 }

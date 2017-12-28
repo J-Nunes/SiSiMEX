@@ -96,7 +96,6 @@ bool MultiAgentApplication::initialize()
 	spawnMCC(3, 3, 0); // Node 3 offers 3 but wants 0
 
 	spawnMCC(0, 0); // Node 0 offers 0
-	//spawnMCP(0, 1); // Node 0 wants  1
 #endif
 
 	return true;
@@ -113,13 +112,20 @@ void MultiAgentApplication::update()
 	// Check the results of agents
 	std::vector<MCC*> mccsAlive;
 	std::vector<MCP*> mcpsAlive;
-	for (auto mcc : _mccs) {
-		if (mcc->negotiationFinished()) {
-			Node *node = mcc->node();
-			node->itemList().removeItem(mcc->contributedItemId());
-			node->itemList().addItem(mcc->constraintItemId());
+	for (auto mcc : _mccs) 
+	{
+		if (mcc->negotiationFinished()) 
+		{
+			if (mcc->negotiationAgreement())
+			{
+				Node *node = mcc->node();
+				node->itemList().removeItem(mcc->contributedItemId());
+				node->itemList().addItem(mcc->constraintItemId());
+			}
 			mcc->finalize();
-		} else {
+		} 
+		else 
+		{
 			mccsAlive.push_back(mcc);
 		}
 	}
@@ -248,6 +254,8 @@ void MultiAgentApplication::OnPacketReceived(TCPSocketPtr socket, InputMemoryStr
 	else
 	{
 		eLog << "Couldn't find agent: " << packetHead.dstAgentId;
+		eLog << "Packet send from agent: " << packetHead.srcAgentId;
+		eLog << "Packet type: " << (int)packetHead.packetType;
 	}
 }
 

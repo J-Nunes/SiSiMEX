@@ -59,7 +59,6 @@ void UCP::update()
 
 void UCP::finalize()
 {
-	iLog << "UCP requesting item: " << _requestedItemId << " finalizing";
 	destroyChildMCP();
 	finish();
 }
@@ -127,7 +126,7 @@ void UCP::createChildMCP(uint16_t constraintItemId)
 void UCP::sendConstraint(uint16_t constraintItemId)
 {
 	// TODO
-	iLog << "UCP requestin item: " << _requestedItemId << " sending constraint: " << constraintItemId << " to UCC";
+	iLog << "UCP requesting item: " << _requestedItemId << " with agent id: " << id() << " sending constraint: " << constraintItemId << " to UCC";
 
 	PacketHeader head;
 	head.srcAgentId = id();

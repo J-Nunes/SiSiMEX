@@ -42,16 +42,32 @@ void MCC::update()
 
 	// TODO: Handle other states
 	case ST_NEGOTIATING:
+		if (_ucc->negotiationFinished())
+		{
+			setState(ST_UNREGISTERING);
+			if (_ucc->negotiationAgreement())
+			{
+				_negotiationAgreement = true;
+				unregisterFromYellowPages();
+			}
+			else
+				_negotiationAgreement = false;
+		}
+		break;
+
+	case ST_UNREGISTERING:
 		break;
 	
 	case ST_FINISHED:
-		finish();
+		break;
 	}
 }
 
 void MCC::finalize()
 {
 	// TODO
+	destroyChildUCC();
+	finish();
 }
 
 
@@ -93,13 +109,13 @@ void MCC::OnPacketReceived(TCPSocketPtr socket, const PacketHeader &packetHeader
 bool MCC::negotiationFinished() const
 {
 	// TODO
-	return false;
+	return (state() == ST_FINISHED);
 }
 
 bool MCC::negotiationAgreement() const
 {
 	// TODO
-	return false;
+	return _negotiationAgreement;
 }
 
 bool MCC::registerIntoYellowPages()
@@ -141,14 +157,13 @@ void MCC::unregisterFromYellowPages()
 void MCC::createChildUCC()
 {
 	// TODO
-	UCC* ucc = new UCC(node(), _contributedItemId, _constraintItemId);
-	UCCPtr tmp(ucc);
-	_ucc = tmp;
-	AgentPtr agentPtr(ucc);
-	g_AgentContainer->addAgent(agentPtr);
+	_ucc = std::make_shared<UCC>(node(), _contributedItemId, _constraintItemId);
+	g_AgentContainer->addAgent(_ucc);
 }
 
 void MCC::destroyChildUCC()
 {
 	// TODO
+	if (_ucc)
+		_ucc->finalize();
 }
