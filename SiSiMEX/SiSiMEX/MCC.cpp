@@ -66,6 +66,7 @@ void MCC::update()
 void MCC::finalize()
 {
 	// TODO
+	iLog << "MCC finalizing";
 	destroyChildUCC();
 	finish();
 }
@@ -84,25 +85,45 @@ void MCC::OnPacketReceived(TCPSocketPtr socket, const PacketHeader &packetHeader
 	}
 
 	//else TODO handle other requests
-	else if (state() == ST_IDLE && packetType == PacketType::RequestMCCForNegotiation)
+	else if (packetType == PacketType::RequestMCCForNegotiation)
 	{
-		iLog << "MCP with id: " << packetHeader.srcAgentId << " wants to start a negotiation";
+		if (state() == ST_IDLE)
+		{
+			iLog << "MCP with id: " << packetHeader.srcAgentId << " wants to start a negotiation";
 
-		setState(ST_NEGOTIATING);
-		createChildUCC();
+			setState(ST_NEGOTIATING);
+			createChildUCC();
 
-		PacketHeader packetHead;
-		packetHead.packetType = PacketType::AnswerMCPNegotiation;
-		packetHead.srcAgentId = id();
-		packetHead.dstAgentId = packetHeader.srcAgentId;
-		PacketAnswerMCPNegotiation packetData;
-		packetData.UCC_ID = _ucc->id();
+			PacketHeader packetHead;
+			packetHead.packetType = PacketType::AnswerMCPNegotiation;
+			packetHead.srcAgentId = id();
+			packetHead.dstAgentId = packetHeader.srcAgentId;
+			PacketAnswerMCPNegotiation packetData;
+			packetData.UCC_ID = _ucc->id();
 
-		OutputMemoryStream stream;
-		packetHead.Write(stream);
-		packetData.Write(stream);
+			OutputMemoryStream stream;
+			packetHead.Write(stream);
+			packetData.Write(stream);
 
-		sendPacketToHost(socket->RemoteAddress().GetIPString(), LISTEN_PORT_AGENTS, stream);
+			sendPacketToHost(socket->RemoteAddress().GetIPString(), LISTEN_PORT_AGENTS, stream);
+		}
+		else
+		{
+			iLog << "An MCP wants to start a negotiation, but I can't";
+
+			PacketHeader packetHead;
+			packetHead.packetType = PacketType::AnswerMCPNegotiation;
+			packetHead.srcAgentId = id();
+			packetHead.dstAgentId = packetHeader.srcAgentId;
+			PacketAnswerMCPNegotiation packetData;
+			packetData.UCC_ID = NULL_AGENT_ID;
+
+			OutputMemoryStream stream;
+			packetHead.Write(stream);
+			packetData.Write(stream);
+
+			sendPacketToHost(socket->RemoteAddress().GetIPString(), LISTEN_PORT_AGENTS, stream);
+		}
 	}
 }
 

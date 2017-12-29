@@ -36,7 +36,6 @@ void MCP::update()
 
 	// TODO: Handle other states
 	case ST_REQUESTING_NEGOTIATION:
-		sendNegotiationRequest(_mccRegisters[_mccRegisterIndex]);
 		break;
 
 	case ST_NEGOTIATING:
@@ -56,6 +55,7 @@ void MCP::update()
 
 void MCP::finalize()
 {
+	iLog << "MCP finalizing";
 	destroyChildUCP();
 	finish();
 }
@@ -65,7 +65,7 @@ void MCP::OnPacketReceived(TCPSocketPtr socket, const PacketHeader &packetHeader
 	const PacketType packetType = packetHeader.packetType;
 	if (state() == ST_REQUESTING_MCCs && packetType == PacketType::ReturnMCCsForItem)
 	{
-		iLog << "OnPacketReceived PacketType::ReturnMCCsForItem " << _itemId;
+		//iLog << "OnPacketReceived PacketType::ReturnMCCsForItem " << _itemId;
 
 		// Read the packet
 		PacketReturnMCCsForItem packetData;
@@ -76,7 +76,7 @@ void MCP::OnPacketReceived(TCPSocketPtr socket, const PacketHeader &packetHeader
 			uint16_t agentId = mccdata.agentId;
 			const std::string &hostIp = mccdata.hostIP;
 			uint16_t hostPort = mccdata.hostPort;
-			iLog << " - MCC: " << agentId << " - host: " << hostIp << ":" << hostPort;
+			//iLog << " - MCC: " << agentId << " - host: " << hostIp << ":" << hostPort;
 		}
 
 		// Collect MCC compatible from YP
@@ -85,6 +85,8 @@ void MCP::OnPacketReceived(TCPSocketPtr socket, const PacketHeader &packetHeader
 		// Select MCC to negociate
 		_mccRegisterIndex = 0;
 		setState(ST_REQUESTING_NEGOTIATION);
+		sendNegotiationRequest(_mccRegisters[_mccRegisterIndex]);
+		_mccRegisterIndex++;
 
 		socket->Disconnect();
 	}
@@ -92,17 +94,36 @@ void MCP::OnPacketReceived(TCPSocketPtr socket, const PacketHeader &packetHeader
 	// TODO: Handle other responses
 	else if (state() == ST_REQUESTING_NEGOTIATION && packetType == PacketType::AnswerMCPNegotiation)
 	{
-		iLog << "MCC with id: " << packetHeader.srcAgentId << " agreeds to start a negotiation";
-		setState(ST_NEGOTIATING);
-
 		PacketAnswerMCPNegotiation packetData;
 		packetData.Read(stream);
-		AgentLocation ucc;
-		ucc.hostIP = socket->RemoteAddress().GetIPString();
-		ucc.hostPort = LISTEN_PORT_AGENTS;
-		ucc.agentId = packetData.UCC_ID;
 
-		createChildUCP(ucc);
+		if (packetData.UCC_ID != NULL_AGENT_ID)
+		{
+			iLog << "MCC with id: " << packetHeader.srcAgentId << " agreeds to start a negotiation";
+			setState(ST_NEGOTIATING);
+
+			AgentLocation ucc;
+			ucc.hostIP = socket->RemoteAddress().GetIPString();
+			ucc.hostPort = LISTEN_PORT_AGENTS;
+			ucc.agentId = packetData.UCC_ID;
+
+			createChildUCP(ucc);
+		}
+		else
+		{
+			iLog << "MCC doesn't want to negotiate, negotiation has failed";
+
+			if (_mccRegisterIndex < _mccRegisters.size())
+			{
+				sendNegotiationRequest(_mccRegisters[_mccRegisterIndex]);
+				_mccRegisterIndex++;
+			}
+			else
+			{
+				setState(ST_FINISHED);
+				_negotiationAgreement = false;
+			}
+		}
 	}
 }
 
@@ -146,12 +167,13 @@ bool MCP::sendNegotiationRequest(const AgentLocation &mccRegister)
 	packetHead.packetType = PacketType::RequestMCCForNegotiation;
 	packetHead.srcAgentId = id();
 	packetHead.dstAgentId = mccRegister.agentId;
-	//PacketRequestMCCForNegotiation packetData;
+	PacketRequestMCCForNegotiation packetData;
+	packetData.itemId = _itemId;
 
 	// Serialize message
 	OutputMemoryStream stream;
 	packetHead.Write(stream);
-	//packetData.Write(stream);
+	packetData.Write(stream);
 
 	return sendPacketToHost(mccRegister.hostIP, mccRegister.hostPort, stream);
 }

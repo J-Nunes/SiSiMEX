@@ -32,6 +32,7 @@ void UCC::update()
 
 void UCC::finalize()
 {
+	iLog << "UCC finalizing";
 	finish();
 }
 

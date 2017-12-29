@@ -1,95 +1,64 @@
-6531200 <INFO>    | -------------------------------------------------------------
-6531200 <INFO>    |                     SiSiMEX Multi-Agents                     
-6531200 <INFO>    | -------------------------------------------------------------
-6531200 <INFO>    | 
-6531200 <INFO>    |  - Server Listen socket created
-6531200 <INFO>    |  - Socket Bind to interface 127.0.0.1:8000
-6531200 <INFO>    |  - Socket entered in Listen state...
-6531200 <INFO>    | Spawn MCC for node 1 contributing item 1 - constraint item 2
-6531200 <INFO>    | Spawn MCC for node 2 contributing item 2 - constraint item 3
-6531200 <INFO>    | Spawn MCC for node 3 contributing item 3 - constraint item 0
-6531200 <INFO>    | Spawn MCC for node 0 contributing item 0 - constraint item 1
-6531325 <INFO>    | OnPacketReceived
-6531325 <INFO>    | OnDisconnected
-6531356 <INFO>    | OnPacketReceived
-6531356 <INFO>    | OnDisconnected
-6531356 <INFO>    | OnPacketReceived
-6531356 <INFO>    | OnPacketReceived
-6531356 <INFO>    | OnDisconnected
-6531356 <INFO>    | OnDisconnected
-6539905 <INFO>    | Spawn MCP for node 0 petitioning item 1
-6540014 <INFO>    | OnPacketReceived
-6540014 <INFO>    | OnPacketReceived PacketType::ReturnMCCsForItem 1
-6540014 <INFO>    |  - MCC: 1 - host: 127.0.0.1:8001
-6540014 <INFO>    | OnDisconnected
-6540014 <INFO>    | OnPacketReceived
-6540014 <INFO>    | MCP with id: 5 wants to start a negotiation
-6540014 <INFO>    | UCC created with ID: 6 Offering item: 1
-6540029 <INFO>    | OnPacketReceived
-6540029 <INFO>    | OnPacketReceived
-6540029 <INFO>    | MCC with id: 1 agreeds to start a negotiation
-6540029 <INFO>    | UCP requesting itemID: 1
-6540029 <INFO>    | OnPacketReceived
-6540029 <INFO>    | OnPacketReceived
-6540029 <INFO>    | OnPacketReceived
-6540029 <INFO>    | UCC want constraint: 2
-6540029 <INFO>    | OnPacketReceived
-6540029 <INFO>    | UCP looking for constraint: 2
-6540045 <INFO>    | OnPacketReceived
-6540045 <INFO>    | OnPacketReceived PacketType::ReturnMCCsForItem 2
-6540045 <INFO>    |  - MCC: 2 - host: 127.0.0.1:8001
-6540045 <INFO>    | OnDisconnected
-6540045 <INFO>    | OnPacketReceived
-6540045 <INFO>    | MCP with id: 8 wants to start a negotiation
-6540045 <INFO>    | UCC created with ID: 9 Offering item: 2
-6540045 <INFO>    | OnPacketReceived
-6540045 <INFO>    | OnPacketReceived
-6540045 <INFO>    | MCC with id: 2 agreeds to start a negotiation
-6540045 <INFO>    | UCP requesting itemID: 2
-6540061 <INFO>    | OnPacketReceived
-6540061 <INFO>    | OnPacketReceived
-6540061 <INFO>    | OnPacketReceived
-6540061 <INFO>    | UCC want constraint: 3
-6540061 <INFO>    | OnPacketReceived
-6540061 <INFO>    | UCP looking for constraint: 3
-6540061 <INFO>    | OnPacketReceived
-6540061 <INFO>    | OnPacketReceived PacketType::ReturnMCCsForItem 3
-6540061 <INFO>    |  - MCC: 3 - host: 127.0.0.1:8001
-6540061 <INFO>    | OnDisconnected
-6540076 <INFO>    | OnPacketReceived
-6540076 <INFO>    | MCP with id: 11 wants to start a negotiation
-6540076 <INFO>    | UCC created with ID: 12 Offering item: 3
-6540076 <INFO>    | OnPacketReceived
-6540076 <INFO>    | OnPacketReceived
-6540076 <INFO>    | MCC with id: 3 agreeds to start a negotiation
-6540076 <INFO>    | UCP requesting itemID: 3
-6540076 <INFO>    | OnPacketReceived
-6540092 <INFO>    | OnPacketReceived
-6540092 <INFO>    | OnPacketReceived
-6540092 <INFO>    | UCC want constraint: 0
-6540092 <INFO>    | OnPacketReceived
-6540092 <INFO>    | UCP looking for constraint: 0
-6540092 <INFO>    | OnPacketReceived
-6540092 <INFO>    | OnPacketReceived PacketType::ReturnMCCsForItem 0
-6540092 <INFO>    |  - MCC: 4 - host: 127.0.0.1:8001
-6540107 <INFO>    | OnDisconnected
-6540107 <INFO>    | OnPacketReceived
-6540107 <INFO>    | MCP with id: 14 wants to start a negotiation
-6540107 <INFO>    | UCC created with ID: 15 Offering item: 0
-6540107 <INFO>    | OnPacketReceived
-6540107 <INFO>    | OnPacketReceived
-6540107 <INFO>    | MCC with id: 4 agreeds to start a negotiation
-6540107 <INFO>    | UCP requesting itemID: 0
-6540107 <INFO>    | OnPacketReceived
-6540107 <INFO>    | OnPacketReceived
-6540123 <INFO>    | OnPacketReceived
-6540123 <INFO>    | UCC want constraint: 1
-6540123 <INFO>    | OnPacketReceived
-6540123 <INFO>    | UCP looking for constraint: 1
-6540123 <INFO>    | OnPacketReceived
-6540123 <INFO>    | OnPacketReceived PacketType::ReturnMCCsForItem 1
-6540123 <INFO>    |  - MCC: 1 - host: 127.0.0.1:8001
-6540123 <INFO>    | OnDisconnected
-6540123 <INFO>    | OnPacketReceived
-6540139 <INFO>    | OnPacketReceived
-6540139 <INFO>    | OnPacketReceived
+2011726 <INFO>    | -------------------------------------------------------------
+2011726 <INFO>    |                     SiSiMEX Multi-Agents                     
+2011726 <INFO>    | -------------------------------------------------------------
+2011726 <INFO>    | 
+2011726 <INFO>    |  - Server Listen socket created
+2011726 <INFO>    |  - Socket Bind to interface 127.0.0.1:8000
+2011742 <INFO>    |  - Socket entered in Listen state...
+2011742 <INFO>    | Spawn MCC for node 1 contributing item 1 - constraint item 2
+2011742 <INFO>    | Spawn MCC for node 2 contributing item 2 - constraint item 3
+2011742 <INFO>    | Spawn MCC for node 3 contributing item 3 - constraint item 0
+2011742 <INFO>    | Spawn MCC for node 0 contributing item 0 - constraint item 9999
+2020883 <INFO>    | Spawn MCP for node 0 petitioning item 2
+2020992 <INFO>    | MCP with id: 5 wants to start a negotiation
+2020992 <INFO>    | UCC created with ID: 6 Offering item: 2
+2020992 <INFO>    | MCC with id: 2 agreeds to start a negotiation
+2020992 <INFO>    | UCP requesting itemID: 2
+2020992 <INFO>    | UCC want constraint: 3
+2020992 <INFO>    | UCP looking for constraint: 3
+2021008 <INFO>    | MCP with id: 8 wants to start a negotiation
+2021008 <INFO>    | UCC created with ID: 9 Offering item: 3
+2021008 <INFO>    | MCC with id: 3 agreeds to start a negotiation
+2021008 <INFO>    | UCP requesting itemID: 3
+2021008 <INFO>    | UCC want constraint: 0
+2021008 <INFO>    | UCP looking for constraint: 0
+2021024 <INFO>    | MCP with id: 11 wants to start a negotiation
+2021024 <INFO>    | UCC created with ID: 12 Offering item: 0
+2021024 <INFO>    | MCC with id: 4 agreeds to start a negotiation
+2021024 <INFO>    | UCP requesting itemID: 0
+2021024 <INFO>    | UCC doesn't have constraint, sending Item to UCP
+2021024 <INFO>    | Item sent
+2021024 <INFO>    | UCP requesting item: 0 negotiation finished successfully
+2021039 <INFO>    | UCP requesting item: 3 with agent id: 10 sending constraint: 0 to UCC
+2021039 <INFO>    | MCC finalizing
+2021039 <INFO>    | UCC finalizing
+2021039 <INFO>    | UCC constraint solved: 0 Sending Item to agent: 10
+2021039 <INFO>    | Item sent
+2021039 <INFO>    | UCP requesting item: 3 negotiation finished successfully
+2021055 <INFO>    | UCP requesting item: 2 with agent id: 7 sending constraint: 3 to UCC
+2021055 <INFO>    | MCC finalizing
+2021055 <INFO>    | UCC finalizing
+2021055 <INFO>    | UCC constraint solved: 3 Sending Item to agent: 7
+2021055 <INFO>    | Item sent
+2021055 <INFO>    | UCP requesting item: 2 negotiation finished successfully
+2021055 <INFO>    | MCP finalizing
+2021055 <INFO>    | UCP finalizing
+2021055 <INFO>    | MCP finalizing
+2021070 <INFO>    | UCP finalizing
+2021070 <INFO>    | MCP finalizing
+2021070 <INFO>    | UCP finalizing
+2021070 <INFO>    | MCC finalizing
+2021070 <INFO>    | UCC finalizing
+2029183 <INFO>    | Inpect local node 0
+2029183 <INFO>    |  - Items: 2 
+2029183 <INFO>    |  - Spare Items: 
+2034284 <INFO>    | Inpect local node 1
+2034284 <INFO>    |  - Items: 1 
+2034299 <INFO>    |  - Spare Items: 
+2037092 <INFO>    | Inpect local node 2
+2037092 <INFO>    |  - Items: 3 
+2037092 <INFO>    |  - Spare Items: 
+2039104 <INFO>    | Inpect local node 3
+2039104 <INFO>    |  - Items: 0 
+2039104 <INFO>    |  - Spare Items: 
+2049728 <INFO>    | List of Local Nodes: 0 1 2 3 

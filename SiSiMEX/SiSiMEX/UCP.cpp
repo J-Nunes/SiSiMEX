@@ -47,7 +47,10 @@ void UCP::update()
 				setState(ST_ITEM_REQUESTED);
 			}
 			else
+			{
+				setState(ST_FINISHED);
 				_negotiationAgreement = false;
+			}
 		}
 		break;
 	case ST_FINISHED:
@@ -59,6 +62,7 @@ void UCP::update()
 
 void UCP::finalize()
 {
+	iLog << "UCP finalizing";
 	destroyChildMCP();
 	finish();
 }

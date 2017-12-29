@@ -1,37 +1,47 @@
-6524211 <INFO>    | -------------------------------------------------------------
-6524211 <INFO>    |                    SiSiMEX: Yellow Pages                     
-6524211 <INFO>    | -------------------------------------------------------------
-6524211 <INFO>    | 
-6524211 <INFO>    |  - Server Listen socket created
-6524211 <INFO>    |  - Socket Bind to interface 127.0.0.1:8000
-6524211 <INFO>    |  - Socket entered in Listen state...
-6531325 <INFO>    | OnPacketReceived: 
-6531325 <INFO>    | PacketType::RegisterMCC
-6531325 <INFO>    |  - MCC Agent ID: 1
-6531325 <INFO>    |  - Contributed Item ID: 1
-6531325 <INFO>    |  - Remote host address: 127.0.0.1:53043
-6531325 <INFO>    | OnPacketReceived: 
-6531325 <INFO>    | PacketType::RegisterMCC
-6531325 <INFO>    |  - MCC Agent ID: 2
-6531325 <INFO>    |  - Contributed Item ID: 2
-6531325 <INFO>    |  - Remote host address: 127.0.0.1:53044
-6531325 <INFO>    | OnPacketReceived: 
-6531340 <INFO>    | PacketType::RegisterMCC
-6531340 <INFO>    |  - MCC Agent ID: 3
-6531340 <INFO>    |  - Contributed Item ID: 3
-6531340 <INFO>    |  - Remote host address: 127.0.0.1:53045
-6531340 <INFO>    | OnPacketReceived: 
-6531340 <INFO>    | PacketType::RegisterMCC
-6531340 <INFO>    |  - MCC Agent ID: 4
-6531340 <INFO>    |  - Contributed Item ID: 0
-6531356 <INFO>    |  - Remote host address: 127.0.0.1:53046
-6539998 <INFO>    | OnPacketReceived: 
-6539998 <INFO>    | PacketType::QueryMCCsForItem
-6540029 <INFO>    | OnPacketReceived: 
-6540029 <INFO>    | PacketType::QueryMCCsForItem
-6540061 <INFO>    | OnPacketReceived: 
-6540061 <INFO>    | PacketType::QueryMCCsForItem
-6540092 <INFO>    | OnPacketReceived: 
-6540092 <INFO>    | PacketType::QueryMCCsForItem
-6540123 <INFO>    | OnPacketReceived: 
-6540123 <INFO>    | PacketType::QueryMCCsForItem
+2006625 <INFO>    | -------------------------------------------------------------
+2006625 <INFO>    |                    SiSiMEX: Yellow Pages                     
+2006625 <INFO>    | -------------------------------------------------------------
+2006625 <INFO>    | 
+2006625 <INFO>    |  - Server Listen socket created
+2006625 <INFO>    |  - Socket Bind to interface 127.0.0.1:8000
+2006625 <INFO>    |  - Socket entered in Listen state...
+2011851 <INFO>    | OnPacketReceived: 
+2011851 <INFO>    | PacketType::RegisterMCC
+2011851 <INFO>    |  - MCC Agent ID: 1
+2011851 <INFO>    |  - Contributed Item ID: 1
+2011851 <INFO>    |  - Remote host address: 127.0.0.1:52237
+2011851 <INFO>    | OnPacketReceived: 
+2011851 <INFO>    | PacketType::RegisterMCC
+2011851 <INFO>    |  - MCC Agent ID: 2
+2011851 <INFO>    |  - Contributed Item ID: 2
+2011851 <INFO>    |  - Remote host address: 127.0.0.1:52238
+2011866 <INFO>    | OnPacketReceived: 
+2011866 <INFO>    | PacketType::RegisterMCC
+2011866 <INFO>    |  - MCC Agent ID: 3
+2011866 <INFO>    |  - Contributed Item ID: 3
+2011866 <INFO>    |  - Remote host address: 127.0.0.1:52239
+2011866 <INFO>    | OnPacketReceived: 
+2011866 <INFO>    | PacketType::RegisterMCC
+2011866 <INFO>    |  - MCC Agent ID: 4
+2011866 <INFO>    |  - Contributed Item ID: 0
+2011866 <INFO>    |  - Remote host address: 127.0.0.1:52240
+2020977 <INFO>    | OnPacketReceived: 
+2020992 <INFO>    | PacketType::QueryMCCsForItem
+2020992 <INFO>    | OnPacketReceived: 
+2020992 <INFO>    | PacketType::QueryMCCsForItem
+2021008 <INFO>    | OnPacketReceived: 
+2021008 <INFO>    | PacketType::QueryMCCsForItem
+2021024 <INFO>    | OnPacketReceived: 
+2021024 <INFO>    | PacketType::UnregisterMCC
+2021024 <INFO>    |  - MCC Agent ID: 4
+2021024 <INFO>    |  - Contributed Item ID: 0
+2021039 <INFO>    | OnPacketReceived: 
+2021039 <INFO>    | PacketType::UnregisterMCC
+2021039 <INFO>    |  - MCC Agent ID: 3
+2021039 <INFO>    |  - Contributed Item ID: 3
+2021055 <INFO>    | OnPacketReceived: 
+2021055 <INFO>    | PacketType::UnregisterMCC
+2021055 <INFO>    |  - MCC Agent ID: 2
+2021055 <INFO>    |  - Contributed Item ID: 2
+2063628 <INFO>    | All MCCs were removed from the registry...
+2068370 <INFO>    | All MCCs were removed from the registry...
