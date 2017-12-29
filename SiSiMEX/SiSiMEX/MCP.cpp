@@ -41,11 +41,17 @@ void MCP::update()
 	case ST_NEGOTIATING:
 		if (_child_ucp->negotiationFinished())
 		{
-			setState(ST_FINISHED);
-			if (_child_ucp->negotiationAgreement())
-				_negotiationAgreement = true;
+			if (_mccRegisterIndex < _mccRegisters.size())
+				sendNegotiationRequest(_mccRegisters[_mccRegisterIndex]);
+
 			else
-				_negotiationAgreement = false;
+			{
+				setState(ST_FINISHED);
+				if (_child_ucp->negotiationAgreement())
+					_negotiationAgreement = true;
+				else
+					_negotiationAgreement = false;
+			}
 		}
 		break;
 
@@ -84,9 +90,7 @@ void MCP::OnPacketReceived(TCPSocketPtr socket, const PacketHeader &packetHeader
 
 		// Select MCC to negociate
 		_mccRegisterIndex = 0;
-		setState(ST_REQUESTING_NEGOTIATION);
 		sendNegotiationRequest(_mccRegisters[_mccRegisterIndex]);
-		_mccRegisterIndex++;
 
 		socket->Disconnect();
 	}
@@ -113,16 +117,8 @@ void MCP::OnPacketReceived(TCPSocketPtr socket, const PacketHeader &packetHeader
 		{
 			iLog << "MCC doesn't want to negotiate, negotiation has failed";
 
-			if (_mccRegisterIndex < _mccRegisters.size())
-			{
-				sendNegotiationRequest(_mccRegisters[_mccRegisterIndex]);
-				_mccRegisterIndex++;
-			}
-			else
-			{
-				setState(ST_FINISHED);
-				_negotiationAgreement = false;
-			}
+			setState(ST_FINISHED);
+			_negotiationAgreement = false;
 		}
 	}
 }
@@ -162,6 +158,9 @@ bool MCP::queryMCCsForItem(int itemId)
 bool MCP::sendNegotiationRequest(const AgentLocation &mccRegister)
 {
 	// TODO
+	_mccRegisterIndex++;
+	setState(ST_REQUESTING_NEGOTIATION);
+
 	// Create message header and data
 	PacketHeader packetHead;
 	packetHead.packetType = PacketType::RequestMCCForNegotiation;
@@ -180,6 +179,9 @@ bool MCP::sendNegotiationRequest(const AgentLocation &mccRegister)
 
 void MCP::createChildUCP(const AgentLocation &uccLoc)
 {
+	if (_child_ucp)
+		destroyChildUCP();
+
 	_child_ucp = std::make_shared<UCP>(node(), _itemId, uccLoc);
 	g_AgentContainer->addAgent(_child_ucp);
 }

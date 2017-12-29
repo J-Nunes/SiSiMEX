@@ -1,47 +1,51 @@
-2006625 <INFO>    | -------------------------------------------------------------
-2006625 <INFO>    |                    SiSiMEX: Yellow Pages                     
-2006625 <INFO>    | -------------------------------------------------------------
-2006625 <INFO>    | 
-2006625 <INFO>    |  - Server Listen socket created
-2006625 <INFO>    |  - Socket Bind to interface 127.0.0.1:8000
-2006625 <INFO>    |  - Socket entered in Listen state...
-2011851 <INFO>    | OnPacketReceived: 
-2011851 <INFO>    | PacketType::RegisterMCC
-2011851 <INFO>    |  - MCC Agent ID: 1
-2011851 <INFO>    |  - Contributed Item ID: 1
-2011851 <INFO>    |  - Remote host address: 127.0.0.1:52237
-2011851 <INFO>    | OnPacketReceived: 
-2011851 <INFO>    | PacketType::RegisterMCC
-2011851 <INFO>    |  - MCC Agent ID: 2
-2011851 <INFO>    |  - Contributed Item ID: 2
-2011851 <INFO>    |  - Remote host address: 127.0.0.1:52238
-2011866 <INFO>    | OnPacketReceived: 
-2011866 <INFO>    | PacketType::RegisterMCC
-2011866 <INFO>    |  - MCC Agent ID: 3
-2011866 <INFO>    |  - Contributed Item ID: 3
-2011866 <INFO>    |  - Remote host address: 127.0.0.1:52239
-2011866 <INFO>    | OnPacketReceived: 
-2011866 <INFO>    | PacketType::RegisterMCC
-2011866 <INFO>    |  - MCC Agent ID: 4
-2011866 <INFO>    |  - Contributed Item ID: 0
-2011866 <INFO>    |  - Remote host address: 127.0.0.1:52240
-2020977 <INFO>    | OnPacketReceived: 
-2020992 <INFO>    | PacketType::QueryMCCsForItem
-2020992 <INFO>    | OnPacketReceived: 
-2020992 <INFO>    | PacketType::QueryMCCsForItem
-2021008 <INFO>    | OnPacketReceived: 
-2021008 <INFO>    | PacketType::QueryMCCsForItem
-2021024 <INFO>    | OnPacketReceived: 
-2021024 <INFO>    | PacketType::UnregisterMCC
-2021024 <INFO>    |  - MCC Agent ID: 4
-2021024 <INFO>    |  - Contributed Item ID: 0
-2021039 <INFO>    | OnPacketReceived: 
-2021039 <INFO>    | PacketType::UnregisterMCC
-2021039 <INFO>    |  - MCC Agent ID: 3
-2021039 <INFO>    |  - Contributed Item ID: 3
-2021055 <INFO>    | OnPacketReceived: 
-2021055 <INFO>    | PacketType::UnregisterMCC
-2021055 <INFO>    |  - MCC Agent ID: 2
-2021055 <INFO>    |  - Contributed Item ID: 2
-2063628 <INFO>    | All MCCs were removed from the registry...
-2068370 <INFO>    | All MCCs were removed from the registry...
+3912692 <INFO>    | -------------------------------------------------------------
+3912692 <INFO>    |                    SiSiMEX: Yellow Pages                     
+3912692 <INFO>    | -------------------------------------------------------------
+3912692 <INFO>    | 
+3912692 <INFO>    |  - Server Listen socket created
+3912707 <INFO>    |  - Socket Bind to interface 127.0.0.1:8000
+3912707 <INFO>    |  - Socket entered in Listen state...
+3920039 <INFO>    | OnPacketReceived: 
+3920039 <INFO>    | PacketType::RegisterMCC
+3920039 <INFO>    |  - MCC Agent ID: 1
+3920039 <INFO>    |  - Contributed Item ID: 1
+3920039 <INFO>    |  - Remote host address: 127.0.0.1:53350
+3920039 <INFO>    | OnPacketReceived: 
+3920039 <INFO>    | PacketType::RegisterMCC
+3920039 <INFO>    |  - MCC Agent ID: 2
+3920039 <INFO>    |  - Contributed Item ID: 2
+3920039 <INFO>    |  - Remote host address: 127.0.0.1:53351
+3920039 <INFO>    | OnPacketReceived: 
+3920055 <INFO>    | PacketType::RegisterMCC
+3920055 <INFO>    |  - MCC Agent ID: 3
+3920055 <INFO>    |  - Contributed Item ID: 3
+3920055 <INFO>    |  - Remote host address: 127.0.0.1:53352
+3920055 <INFO>    | OnPacketReceived: 
+3920055 <INFO>    | PacketType::RegisterMCC
+3920055 <INFO>    |  - MCC Agent ID: 4
+3920055 <INFO>    |  - Contributed Item ID: 0
+3920055 <INFO>    |  - Remote host address: 127.0.0.1:53353
+3925780 <INFO>    | OnPacketReceived: 
+3925780 <INFO>    | PacketType::QueryMCCsForItem
+3925796 <INFO>    | OnPacketReceived: 
+3925796 <INFO>    | PacketType::QueryMCCsForItem
+3925811 <INFO>    | OnPacketReceived: 
+3925811 <INFO>    | PacketType::QueryMCCsForItem
+3925827 <INFO>    | OnPacketReceived: 
+3925827 <INFO>    | PacketType::QueryMCCsForItem
+3925827 <INFO>    | OnPacketReceived: 
+3925827 <INFO>    | PacketType::UnregisterMCC
+3925827 <INFO>    |  - MCC Agent ID: 4
+3925827 <INFO>    |  - Contributed Item ID: 0
+3925843 <INFO>    | OnPacketReceived: 
+3925843 <INFO>    | PacketType::UnregisterMCC
+3925843 <INFO>    |  - MCC Agent ID: 3
+3925843 <INFO>    |  - Contributed Item ID: 3
+3925858 <INFO>    | OnPacketReceived: 
+3925858 <INFO>    | PacketType::UnregisterMCC
+3925858 <INFO>    |  - MCC Agent ID: 2
+3925858 <INFO>    |  - Contributed Item ID: 2
+3925874 <INFO>    | OnPacketReceived: 
+3925874 <INFO>    | PacketType::UnregisterMCC
+3925874 <INFO>    |  - MCC Agent ID: 1
+3925874 <INFO>    |  - Contributed Item ID: 1

@@ -1,3 +1,4 @@
 ﻿  MultiAgentApplication.cpp
+cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
   SiSiMEX.vcxproj -> C:\Users\Usuario\Documents\GitHub\SiSiMEX\SiSiMEX\x64\Debug\SiSiMEX.exe
   SiSiMEX.vcxproj -> C:\Users\Usuario\Documents\GitHub\SiSiMEX\SiSiMEX\x64\Debug\SiSiMEX.pdb (Partial PDB)
